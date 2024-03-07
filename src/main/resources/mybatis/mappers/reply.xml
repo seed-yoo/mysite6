@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="reply">
+
+	<!-- 쿼리문 작성 -->
+	
+	<!-- personVo 매핑 -->
+	<!-- 
+	<resultMap id="resultMapPersonVo" type="PersonVo" >
+		<result column="person_id" property="personId"></result>
+		<result column="name" property="name"></result>
+		<result column="hp" property="hp"></result>
+		<result column="company" property="company"></result>
+	</resultMap>
+	 -->
+	 
+	 <!-- 전체리스트 -->
+	<select id="replySelectList" resultType="ReplyVo">
+		<![CDATA[
+			select rb.no, rb.user_no, rb.title, rb.content, rb.hit, rb.reg_date, rb.group_no, rb.order_no, rb.depth,
+				   u.name
+			from rboard rb, users u
+			where rb.user_no = u.no
+		]]>
+	</select>
+	
+	<!-- 1명 데이터 가져오기 -->
+	<select id="replyselectOne" parameterType="int" resultType="ReplyVo">
+		<![CDATA[
+			select rb.no, rb.user_no, rb.title, rb.content, rb.hit, rb.reg_date, rb.group_no, rb.order_no, rb.depth,
+				   u.name
+			from rboard rb, users u
+			where rb.user_no = u.no
+			and rb.no = #{ no }
+		]]>
+	</select>
+	 
+	<!-- 추가 insert -->
+	<insert id="replyInsert" parameterType="ReplyVo">
+		<![CDATA[
+			insert into rboard
+			values (null, #{ user_no }, #{ title }, #{ content }, 0, now(), 0, 0, 0)
+		]]>
+	</insert>
+	
+	<!-- 추가2 map사용 insert2 -->
+	<insert id="replyInsert2" parameterType="map">
+		<![CDATA[
+			insert into rboard
+			values (null, #{ user_no }, #{ title }, #{ content }, 0, now(), 0, 0, 0)
+		]]>
+	</insert>
+	
+	<!-- 수정 update -->
+	<update id="replyUpdate" parameterType="ReplyVo">
+		<![CDATA[
+			update rboard
+			set title = #{ title },
+			    content = #{ content }
+			where no = #{ no }
+		]]>
+	</update>
+	
+	<!-- 삭제 delete -->
+	<delete id="replyDelete" parameterType="int">
+		<![CDATA[
+			delete from rboard where no = #{ no }
+		]]>
+	</delete>
+	
+	
+ 
+
+
+</mapper>

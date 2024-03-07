@@ -48,6 +48,7 @@ public class UserController {
 	@RequestMapping(value = "/modifyform", method = { RequestMethod.GET, RequestMethod.POST })
 	public String modifyForm() {
 		System.out.println("UserController.modifyform");
+		
 		return "/user/modifyForm";
 	}
 
@@ -66,6 +67,7 @@ public class UserController {
 		// 받은 주소값을 Attribute에 넣기
 		model.addAttribute("userVo", userNoVo);
 		System.out.println(userNoVo);
+		
 		return "/user/modifyForm";
 	}
 
@@ -169,6 +171,11 @@ public class UserController {
 
 		// 서비스로 묶은거 넘기기
 		userService.exeModify(userVo);
+		
+		
+		
+		session.setAttribute("authUser", userVo);
+		
 
 		// 메인화면으로 리다이렉트
 		return "redirect:/main";

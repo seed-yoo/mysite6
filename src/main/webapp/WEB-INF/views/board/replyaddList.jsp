@@ -32,12 +32,12 @@
 			<div id="content">
 
 				<div id="content-head">
-					<h3>일반게시판</h3>
+					<h3>댓글게시판</h3>
 					<div id="location">
 						<ul>
 							<li>홈</li>
 							<li>게시판</li>
-							<li class="last">일반게시판</li>
+							<li class="last">댓글게시판</li>
 						</ul>
 					</div>
 					<div class="clear"></div>
@@ -64,16 +64,16 @@
 									<th>관리</th>
 								</tr>
 							</thead>
-							<c:forEach items="${ requestScope.bList }" var="boardVo" varStatus="status">
+							<c:forEach items="${ requestScope.rList }" var="replyVo" varStatus="status">
 							<tbody>
 								<tr>
-									<td>${ boardVo.no }</td>
-									<td class="text-left"><a href="${pageContext.request.contextPath}/board/readform?no=${ boardVo.no }">${ boardVo.title }</a></td>
-									<td>${ boardVo.name }</td>
-									<td>${ boardVo.hit }</td>
-									<td>${ boardVo.reg_date }</td>
-									<c:if test="${sessionScope.authUser.no == boardVo.user_no}">
-										<td><a href="${pageContext.request.contextPath}/board/delete?no=${ boardVo.no }">[삭제]</a></td>
+									<td>${ replyVo.no }</td>
+									<td class="text-left"><a href="${pageContext.request.contextPath}/reply/replyreadform?no=${ replyVo.no }">${ replyVo.title }</a></td>
+									<td>${ replyVo.name }</td>
+									<td>${ replyVo.hit }</td>
+									<td>${ replyVo.reg_date }</td>
+									<c:if test="${sessionScope.authUser.no == replyVo.user_no}">
+										<td><a href="${pageContext.request.contextPath}/reply/delete?no=${ replyVo.no }">[삭제]</a></td>
 									</c:if>
 								</tr>
 

@@ -50,37 +50,37 @@
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
-								<span class="form-value">${ requestScope.bVo.name }</span>
+								<span class="form-value">${ requestScope.rVo.name }</span>
 							</div>
 							
 							<!-- 조회수 -->
 							<div class="form-group">
 								<span class="form-text">조회수</span>
-								<span class="form-value">${ requestScope.bVo.hit }</span>
+								<span class="form-value">${ requestScope.rVo.hit }</span>
 							</div>
 							
 							<!-- 작성일 -->
 							<div class="form-group">
 								<span class="form-text">작성일</span>
-								<span class="form-value">${ requestScope.bVo.reg_date }</span>
+								<span class="form-value">${ requestScope.rVo.reg_date }</span>
 							</div>
 							
 							<!-- 제목 -->
 							<div class="form-group">
 								<span class="form-text">제 목</span>
-								<span class="form-value">${ requestScope.bVo.title }</span>
+								<span class="form-value">${ requestScope.rVo.title }</span>
 							</div>
 						
 							<!-- 내용 -->
 							<div id="txt-content">
 								<span class="form-value" >
-									${ requestScope.bVo.content }
+									${ requestScope.rVo.content }
 								</span>
 							</div>
-							<c:if test="${sessionScope.authUser.no == bVo.user_no}">
-								<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyform?no=${ requestScope.bVo.no }">수정</a>
+							<c:if test="${sessionScope.authUser.no == rVo.user_no}">
+								<a id="btn_modify" href="${pageContext.request.contextPath}/reply/replymodifyform?no=${ requestScope.rVo.no }">수정</a>
 							</c:if>
-							<a id="btn_modify" href="${pageContext.request.contextPath}/board/listform">목록</a>
+							<a id="btn_modify" href="${pageContext.request.contextPath}/reply/replyaddlistform">목록</a>
 							
 						</form>
 						<!-- //form -->

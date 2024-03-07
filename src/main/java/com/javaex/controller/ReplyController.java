@@ -10,30 +10,30 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
-import com.javaex.service.BoardService;
-import com.javaex.vo.BoardVo;
+import com.javaex.service.ReplyService;
+import com.javaex.vo.ReplyVo;
 
 @Controller
-@RequestMapping(value = "/board")
-public class BoardController {
+@RequestMapping(value = "/reply")
+public class ReplyController {
 
 	// 필드
 	@Autowired
-	private BoardService boardService;
+	private ReplyService replyService;
 
 	// =============== board/form controller 모음
 	// ==============================================
-	// 보드리스트폼
-	@RequestMapping(value = "/listform", method = { RequestMethod.GET, RequestMethod.POST })
-	public String listForm(Model model) {
-		System.out.println("BoardController.listform");
+	// 댓글리스트폼
+	@RequestMapping(value = "/replyaddlistform", method = { RequestMethod.GET, RequestMethod.POST })
+	public String replyaddListForm(Model model) {
+		System.out.println("ReplyController.replyaddlistform");
 
 		// 자동연결
-		List<BoardVo> boardList = boardService.exeList();
+		List<ReplyVo> replyList = replyService.exeList();
 
-		model.addAttribute("bList", boardList);
+		model.addAttribute("rList", replyList);
 
-		return "/board/list";
+		return "/board/replyaddList";
 	}
 	
 	// 보드리스트폼2
@@ -63,15 +63,15 @@ public class BoardController {
 	}
 */
 	// 보드수정폼
-	@RequestMapping(value = "/modifyform", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyForm(@RequestParam(value = "no") int no, Model model) {
-		System.out.println("BoardController.modifyform");
+	@RequestMapping(value = "/replymodifyform", method = { RequestMethod.GET, RequestMethod.POST })
+	public String replymodifyForm(@RequestParam(value = "no") int no, Model model) {
+		System.out.println("ReplyController.replymodifyForm");
 
-		BoardVo boardVo = boardService.exeModifyForm(no);
+		ReplyVo replyVo = replyService.exeModifyForm(no);
 		
-		model.addAttribute("bVo", boardVo);
+		model.addAttribute("rVo", replyVo);
 
-		return "/board/modifyForm";
+		return "/board/replymodifyForm";
 	}
 /*
 	// 수정폼2
@@ -89,21 +89,14 @@ public class BoardController {
 	}
 */
 	// 보드읽기폼
-	@RequestMapping(value = "/readform", method = { RequestMethod.GET, RequestMethod.POST })
-	public String readForm(@RequestParam(value = "no") int no, Model model) {
-		System.out.println("BoardController.readform");
+	@RequestMapping(value = "/replyreadform", method = { RequestMethod.GET, RequestMethod.POST })
+	public String replyreadForm(@RequestParam(value = "no") int no, Model model) {
+		System.out.println("ReplyController.replyreadform");
 
-		BoardVo boardVo = boardService.exeModifyForm(no);
-		model.addAttribute("bVo", boardVo);
+		ReplyVo replyVo = replyService.exeModifyForm(no);
+		model.addAttribute("rVo", replyVo);
 
-		return "/board/read";
-	}
-
-	// 보드등록폼
-	@RequestMapping(value = "/writeform", method = { RequestMethod.GET, RequestMethod.POST })
-	public String writeForm() {
-		System.out.println("BoardController.writeform");
-		return "/board/writeForm";
+		return "/board/replyread";
 	}
 
 	// ==============================================================================================
@@ -113,24 +106,24 @@ public class BoardController {
 
 	// 게시판등록
 	@RequestMapping(value = "/write", method = { RequestMethod.GET, RequestMethod.POST })
-	public String write(@ModelAttribute BoardVo boardVo) {
-		System.out.println("BoardController.write");
+	public String write(@ModelAttribute ReplyVo replyVo) {
+		System.out.println("ReplyController.write");
 
-		System.out.println(boardVo.toString());
+		System.out.println(replyVo.toString());
 
 		// 서비스를 메모리에 올리고
 		// 서비스의 메소드 사용
-		boardService.exeWrite(boardVo);
+		replyService.exeWrite(replyVo);
 
 		// 리스트로 리다이렉트
-		return "redirect:/board/listform";
+		return "redirect:/reply/replyaddlistform";
 
 	}
 
 	// 게시판등록2
 	@RequestMapping(value = "/write2", method = { RequestMethod.GET, RequestMethod.POST })
 	public String write2(@RequestParam(value = "title") String title, @RequestParam(value = "content") String content) {
-		System.out.println("BoardController.write2");
+		System.out.println("ReplyController.write2");
 
 		// System.out.println(name);
 		// System.out.println(hp);
@@ -139,24 +132,24 @@ public class BoardController {
 		// vo 묶는다
 		// PersonVo personVo = new PersonVo(name, hp, company);
 
-		boardService.exeWrite2(title, content);
+		replyService.exeWrite2(title, content);
 
 		// 리스트로 리다이렉트
-		return "redirect:/board/listform";
+		return "redirect:/reply/replyaddlistform";
 	}
 
 	// 수정
 	@RequestMapping(value = "/modify", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modify(@ModelAttribute BoardVo boardVo) {
+	public String modify(@ModelAttribute ReplyVo replyVo) {
 
-		System.out.println("BoardController.modify()");
+		System.out.println("ReplyController.modify()");
 
-		System.out.println(boardVo);
+		System.out.println(replyVo);
 
-		boardService.exeModify(boardVo);
+		replyService.exeModify(replyVo);
 
 		// 리스트로 리다이렉트
-		return "redirect:/board/listform";
+		return "redirect:/reply/replyaddlistform";
 	}
 
 
@@ -165,14 +158,14 @@ public class BoardController {
 	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
 	public String delete(@RequestParam(value = "no") int no) {
 
-		System.out.println("BoardController.delete()");
+		System.out.println("ReplyController.delete()");
 
 		// System.out.println(personId);
 
-		boardService.exeDelete(no);
+		replyService.exeDelete(no);
 
 		// 리스트로 리다이렉트
-		return "redirect:/board/listform";
+		return "redirect:/reply/replyaddlistform";
 
 	}
 	

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -32,60 +31,61 @@
 			<div id="content">
 
 				<div id="content-head">
-					<h3>일반게시판</h3>
+					<h3>댓글게시판</h3>
 					<div id="location">
 						<ul>
 							<li>홈</li>
 							<li>게시판</li>
-							<li class="last">일반게시판</li>
+							<li class="last">댓글게시판</li>
 						</ul>
 					</div>
 					<div class="clear"></div>
 				</div>
 				<!-- //content-head -->
-	
+
 				<div id="board">
-					<div id="read">
-						<form action="#" method="get">
+					<div id="modifyForm">
+						<form action="${pageContext.request.contextPath}/reply/modify" method="get">
 							<!-- 작성자 -->
 							<div class="form-group">
-								<span class="form-text">작성자</span>
-								<span class="form-value">${ requestScope.bVo.name }</span>
+								<span class="form-text">작성자</span> 
+								<span class="form-value">${ requestScope.rVo.name }</span>
 							</div>
-							
+
 							<!-- 조회수 -->
 							<div class="form-group">
-								<span class="form-text">조회수</span>
-								<span class="form-value">${ requestScope.bVo.hit }</span>
+								<span class="form-text">조회수</span> 
+								<span class="form-value">${ requestScope.rVo.hit }</span>
 							</div>
-							
+
 							<!-- 작성일 -->
 							<div class="form-group">
-								<span class="form-text">작성일</span>
-								<span class="form-value">${ requestScope.bVo.reg_date }</span>
+								<span class="form-text">작성일</span> 
+								<span class="form-value">${ requestScope.rVo.reg_date }</span>
 							</div>
-							
+
 							<!-- 제목 -->
 							<div class="form-group">
-								<span class="form-text">제 목</span>
-								<span class="form-value">${ requestScope.bVo.title }</span>
+								<label class="form-text" for="txt-title">제목</label> 
+								<input type="text" id="txt-title" name="title" value="${ requestScope.rVo.title }">
 							</div>
-						
+
+
 							<!-- 내용 -->
-							<div id="txt-content">
-								<span class="form-value" >
-									${ requestScope.bVo.content }
-								</span>
+							<div class="form-group">
+								<textarea id="txt-content" name="content">${ requestScope.rVo.content }</textarea>
 							</div>
-							<c:if test="${sessionScope.authUser.no == bVo.user_no}">
-								<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyform?no=${ requestScope.bVo.no }">수정</a>
-							</c:if>
-							<a id="btn_modify" href="${pageContext.request.contextPath}/board/listform">목록</a>
-							
+
+
+
+
+							<input type="hidden" id="txt-no" name="no" value="${ requestScope.rVo.no }"> <a id="btn_cancel" href="${pageContext.request.contextPath}/board/readform?no=${ requestScope.rVo.no }">취소</a>
+							<button id="btn_modify" type="submit">수정</button>
+
 						</form>
 						<!-- //form -->
 					</div>
-					<!-- //read -->
+					<!-- //modifyForm -->
 				</div>
 				<!-- //board -->
 			</div>
@@ -93,6 +93,7 @@
 
 		</div>
 		<!-- //container  -->
+
 
 		<!-- footer -->
 		<c:import url="/WEB-INF/views/include/footer.jsp"></c:import>

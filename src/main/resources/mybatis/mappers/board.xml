@@ -18,29 +18,29 @@
 	 <!-- 전체리스트 -->
 	<select id="selectList" resultType="BoardVo">
 		<![CDATA[
-			select rb.no, rb.user_no, rb.title, rb.content, rb.hit, rb.reg_date, rb.group_no, rb.order_no, rb.depth,
+			select b.no, b.user_no, b.title, b.content, b.hit, b.reg_date,
 				   u.name
-			from rboard rb, users u
-			where rb.user_no = u.no
+			from board b, users u
+			where b.user_no = u.no
 		]]>
 	</select>
 	
 	<!-- 1명 데이터 가져오기 -->
 	<select id="selectOne" parameterType="int" resultType="BoardVo">
 		<![CDATA[
-			select rb.no, rb.user_no, rb.title, rb.content, rb.hit, rb.reg_date, rb.group_no, rb.order_no, rb.depth,
+			select b.no, b.user_no, b.title, b.content, b.hit, b.reg_date,
 				   u.name
-			from rboard rb, users u
-			where rb.user_no = u.no
-			and rb.no = #{ no }
+			from board b, users u
+			where b.user_no = u.no
+			and b.no = #{ no }
 		]]>
 	</select>
 	
 	<!-- 1명 데이터 가져오기2 -->
 	<select id="selectOne2" parameterType="int" resultType="map">
 		<![CDATA[
-			select no, user_no, title, content, hit, reg_date, group_no, order_no, depth
-			from rboard
+			select no, title, content, hit, reg_date, user_no
+			from board
 			where no= #{ no }
 		]]>
 	</select>
@@ -48,23 +48,23 @@
 	<!-- 추가 insert -->
 	<insert id="boardInsert" parameterType="BoardVo">
 		<![CDATA[
-			insert into rboard
-			values (null, #{ user_no }, #{ title }, #{ content }, 0, now(), 0, 0, 0)
+			insert into board
+			values (null, #{ title }, #{ content }, 0, now(), #{ user_no })
 		]]>
 	</insert>
 	
 	<!-- 추가2 map사용 insert2 -->
 	<insert id="boardInsert2" parameterType="map">
 		<![CDATA[
-			insert into rboard
-			values (null, #{ user_no }, #{ title }, #{ content }, 0, now(), 0, 0, 0)
+			insert into board
+			values (null, #{ title }, #{ content }, 0, now(), #{ user_no })
 		]]>
 	</insert>
 	
 	<!-- 수정 update -->
 	<update id="boardUpdate" parameterType="BoardVo">
 		<![CDATA[
-			update rboard
+			update board
 			set title = #{ title },
 			    content = #{ content }
 			where no = #{ no }
@@ -74,9 +74,12 @@
 	<!-- 삭제 delete -->
 	<delete id="boardDelete" parameterType="int">
 		<![CDATA[
-			delete from rboard where no = #{ no }
+			delete from board where no = #{ no }
 		]]>
 	</delete>
+	
+	
+ 
 
 
 </mapper>

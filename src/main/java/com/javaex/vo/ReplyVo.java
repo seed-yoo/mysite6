@@ -1,6 +1,6 @@
 package com.javaex.vo;
 
-public class BoardVo {
+public class ReplyVo {
 
 	private int no;
 	private int user_no;
@@ -8,20 +8,24 @@ public class BoardVo {
 	private String content;
 	private int hit;
 	private String reg_date;
+	private int group_no;
+	private int order_no;
+	private int depth;
 	private String name;
 
-	public BoardVo() {
+	public ReplyVo() {
 		super();
 	}
 	
-	public BoardVo(int user_no, String title, String content) {
+	public ReplyVo(int user_no, String title, String content) {
 		super();
 		this.user_no = user_no;
 		this.title = title;
 		this.content = content;
 	}
 
-	public BoardVo(int no, int user_no, String title, String content, int hit, String reg_date, String name) {
+	public ReplyVo(int no, int user_no, String title, String content, int hit, String reg_date, int group_no,
+			int order_no, int depth, String name) {
 		super();
 		this.no = no;
 		this.user_no = user_no;
@@ -29,6 +33,9 @@ public class BoardVo {
 		this.content = content;
 		this.hit = hit;
 		this.reg_date = reg_date;
+		this.group_no = group_no;
+		this.order_no = order_no;
+		this.depth = depth;
 		this.name = name;
 	}
 
@@ -80,6 +87,30 @@ public class BoardVo {
 		this.reg_date = reg_date;
 	}
 
+	public int getGroup_no() {
+		return group_no;
+	}
+
+	public void setGroup_no(int group_no) {
+		this.group_no = group_no;
+	}
+
+	public int getOrder_no() {
+		return order_no;
+	}
+
+	public void setOrder_no(int order_no) {
+		this.order_no = order_no;
+	}
+
+	public int getDepth() {
+		return depth;
+	}
+
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+
 	public String getName() {
 		return name;
 	}
@@ -91,9 +122,8 @@ public class BoardVo {
 	@Override
 	public String toString() {
 		return "BoardVo [no=" + no + ", user_no=" + user_no + ", title=" + title + ", content=" + content + ", hit="
-				+ hit + ", reg_date=" + reg_date + ", name=" + name + "]";
+				+ hit + ", reg_date=" + reg_date + ", group_no=" + group_no + ", order_no=" + order_no + ", depth="
+				+ depth + ", name=" + name + "]";
 	}
-
-	
 
 }
