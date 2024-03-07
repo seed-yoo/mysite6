@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.javaex.service.BoardService;
 import com.javaex.vo.BoardVo;
+import com.javaex.vo.UserVo;
+
+import jakarta.servlet.http.HttpSession;
 
 @Controller
 @RequestMapping(value = "/board")
@@ -39,36 +42,36 @@ public class BoardController {
 
 	// 보드수정폼
 	@RequestMapping(value = "/modifyform", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyForm(@RequestParam(value = "bno") int bno, Model model) {
+	public String modifyForm(@RequestParam(value = "no") int no, Model model) {
 		System.out.println("BoardController.modifyform");
 
-		BoardVo boardVo = boardService.exeModifyForm(bno);
-
+		BoardVo boardVo = boardService.exeModifyForm(no);
+		
 		model.addAttribute("bVo", boardVo);
 
 		return "/board/modifyForm";
 	}
-
+/*
 	// 수정폼2
 	// localhost:8080/phonebook5/phone/modifyform
 	@RequestMapping(value = "/modifyform2", method = { RequestMethod.GET, RequestMethod.POST })
-	public String modifyForm2(@RequestParam(value = "bno") int bno, Model model) {
+	public String modifyForm2(@RequestParam(value = "no") int no, Model model) {
 		System.out.println("phonebookController.modifyform2()");
-		System.out.println(bno);
+		System.out.println(no);
 
-		Map<String, Object> pMap = boardService.exeModifyForm2(bno);
+		Map<String, Object> pMap = boardService.exeModifyForm2(no);
 		model.addAttribute("pMap", pMap);
 
 		return "/board/modifyForm2";
 
 	}
-
+*/
 	// 보드읽기폼
 	@RequestMapping(value = "/readform", method = { RequestMethod.GET, RequestMethod.POST })
-	public String readForm(@RequestParam(value = "bno") int bno, Model model) {
+	public String readForm(@RequestParam(value = "no") int no, Model model) {
 		System.out.println("BoardController.readform");
 
-		BoardVo boardVo = boardService.exeModifyForm(bno);
+		BoardVo boardVo = boardService.exeModifyForm(no);
 		model.addAttribute("bVo", boardVo);
 
 		return "/board/read";
@@ -104,8 +107,7 @@ public class BoardController {
 
 	// 게시판등록2
 	@RequestMapping(value = "/write2", method = { RequestMethod.GET, RequestMethod.POST })
-	public String write2(@RequestParam(value = "title") String title, @RequestParam(value = "writer") String writer,
-			@RequestParam(value = "content") String content) {
+	public String write2(@RequestParam(value = "title") String title, @RequestParam(value = "content") String content) {
 		System.out.println("BoardController.write2");
 
 		// System.out.println(name);
@@ -115,7 +117,7 @@ public class BoardController {
 		// vo 묶는다
 		// PersonVo personVo = new PersonVo(name, hp, company);
 
-		boardService.exeWrite2(title, writer, content);
+		boardService.exeWrite2(title, content);
 
 		// 리스트로 리다이렉트
 		return "redirect:/board/listform";
@@ -135,19 +137,46 @@ public class BoardController {
 		return "redirect:/board/listform";
 	}
 
+
+
 	// 삭제
 	@RequestMapping(value = "/delete", method = { RequestMethod.GET, RequestMethod.POST })
-	public String delete(@RequestParam(value = "bno") int bno) {
+	public String delete(@RequestParam(value = "no") int no) {
 
 		System.out.println("BoardController.delete()");
 
 		// System.out.println(personId);
 
-		boardService.exeDelete(bno);
+		boardService.exeDelete(no);
 
 		// 리스트로 리다이렉트
 		return "redirect:/board/listform";
 
 	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

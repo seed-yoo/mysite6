@@ -67,12 +67,14 @@
 							<c:forEach items="${ requestScope.bList }" var="boardVo" varStatus="status">
 							<tbody>
 								<tr>
-									<td>${ boardVo.bno }</td>
-									<td class="text-left"><a href="${pageContext.request.contextPath}/board/readform?bno=${ boardVo.bno }">${ boardVo.title }</a></td>
-									<td>${ boardVo.writer }</td>
+									<td>${ boardVo.no }</td>
+									<td class="text-left"><a href="${pageContext.request.contextPath}/board/readform?no=${ boardVo.no }">${ boardVo.title }</a></td>
+									<td>${ boardVo.name }</td>
 									<td>${ boardVo.hit }</td>
 									<td>${ boardVo.reg_date }</td>
-									<td><a href="${pageContext.request.contextPath}/board/delete?bno=${ boardVo.bno }">[삭제]</a></td>
+									<c:if test="${sessionScope.authUser.no == boardVo.user_no}">
+										<td><a href="${pageContext.request.contextPath}/board/delete?no=${ boardVo.no }">[삭제]</a></td>
+									</c:if>
 								</tr>
 
 							</tbody>

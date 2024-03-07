@@ -49,7 +49,7 @@
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span> 
-								<span class="form-value">${ requestScope.bVo.writer }</span>
+								<span class="form-value">${ requestScope.bVo.name }</span>
 							</div>
 
 							<!-- 조회수 -->
@@ -75,13 +75,11 @@
 							<div class="form-group">
 								<textarea id="txt-content" name="content">${ requestScope.bVo.content }</textarea>
 							</div>
-							
-							
-							
-							<input type="hidden" id="txt-bno" name="bno" value="${ requestScope.bVo.bno }">
-							<input type="hidden" id="txt-writer" name="writer" value="${ requestScope.bVo.writer }">
-							
-							<a id="btn_cancel" href="${pageContext.request.contextPath}/board/readform?bno=${ requestScope.bVo.bno }">취소</a>
+
+
+
+
+							<input type="hidden" id="txt-no" name="no" value="${ requestScope.bVo.no }"> <a id="btn_cancel" href="${pageContext.request.contextPath}/board/readform?no=${ requestScope.bVo.no }">취소</a>
 							<button id="btn_modify" type="submit">수정</button>
 
 						</form>

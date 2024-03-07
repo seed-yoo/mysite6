@@ -18,60 +18,63 @@
 	 <!-- 전체리스트 -->
 	<select id="selectList" resultType="BoardVo">
 		<![CDATA[
-			select bno, title, writer, content, hit, reg_date
-			from board
+			select rb.no, rb.user_no, rb.title, rb.content, rb.hit, rb.reg_date, rb.group_no, rb.order_no, rb.depth,
+				   u.name
+			from rboard rb, users u
+			where rb.user_no = u.no
 		]]>
 	</select>
 	
 	<!-- 1명 데이터 가져오기 -->
 	<select id="selectOne" parameterType="int" resultType="BoardVo">
 		<![CDATA[
-			select bno, title, writer, content, hit, reg_date
-			from board
-			where bno= #{ bno }
+			select rb.no, rb.user_no, rb.title, rb.content, rb.hit, rb.reg_date, rb.group_no, rb.order_no, rb.depth,
+				   u.name
+			from rboard rb, users u
+			where rb.user_no = u.no
+			and rb.no = #{ no }
 		]]>
 	</select>
 	
 	<!-- 1명 데이터 가져오기2 -->
 	<select id="selectOne2" parameterType="int" resultType="map">
 		<![CDATA[
-			select bno, title, writer, content, hit, reg_date
-			from board
-			where bno= #{ bno }
+			select no, user_no, title, content, hit, reg_date, group_no, order_no, depth
+			from rboard
+			where no= #{ no }
 		]]>
 	</select>
 	 
 	<!-- 추가 insert -->
 	<insert id="boardInsert" parameterType="BoardVo">
 		<![CDATA[
-			insert into board
-			values(null, #{ title }, #{ writer }, #{ content }, 0, now())
+			insert into rboard
+			values (null, #{ user_no }, #{ title }, #{ content }, 0, now(), 0, 0, 0)
 		]]>
 	</insert>
 	
 	<!-- 추가2 map사용 insert2 -->
 	<insert id="boardInsert2" parameterType="map">
 		<![CDATA[
-			insert into board
-			values(null, #{ title }, #{ writer }, #{ content }, 0, now())
+			insert into rboard
+			values (null, #{ user_no }, #{ title }, #{ content }, 0, now(), 0, 0, 0)
 		]]>
 	</insert>
 	
 	<!-- 수정 update -->
 	<update id="boardUpdate" parameterType="BoardVo">
 		<![CDATA[
-			update board
+			update rboard
 			set title = #{ title },
-				writer = #{ writer },
 			    content = #{ content }
-			where bno = #{ bno }
+			where no = #{ no }
 		]]>
 	</update>
 	
 	<!-- 삭제 delete -->
 	<delete id="boardDelete" parameterType="int">
 		<![CDATA[
-			delete from board where bno = #{ bno }
+			delete from rboard where no = #{ no }
 		]]>
 	</delete>
 

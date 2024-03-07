@@ -50,7 +50,7 @@
 							<!-- 작성자 -->
 							<div class="form-group">
 								<span class="form-text">작성자</span>
-								<span class="form-value">${ requestScope.bVo.writer }</span>
+								<span class="form-value">${ requestScope.bVo.name }</span>
 							</div>
 							
 							<!-- 조회수 -->
@@ -77,8 +77,9 @@
 									${ requestScope.bVo.content }
 								</span>
 							</div>
-							
-							<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyform?bno=${ requestScope.bVo.bno }">수정</a>
+							<c:if test="${sessionScope.authUser.no == bVo.user_no}">
+								<a id="btn_modify" href="${pageContext.request.contextPath}/board/modifyform?no=${ requestScope.bVo.no }">수정</a>
+							</c:if>
 							<a id="btn_modify" href="${pageContext.request.contextPath}/board/listform">목록</a>
 							
 						</form>

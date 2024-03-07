@@ -2,40 +2,57 @@ package com.javaex.vo;
 
 public class BoardVo {
 
-	private int bno;
+	private int no;
+	private int user_no;
 	private String title;
-	private String writer;
 	private String content;
 	private int hit;
 	private String reg_date;
+	private int group_no;
+	private int order_no;
+	private int depth;
+	private String name;
 
 	public BoardVo() {
 		super();
 	}
 	
-	public BoardVo(String title, String writer, String content) {
+	public BoardVo(int user_no, String title, String content) {
 		super();
+		this.user_no = user_no;
 		this.title = title;
-		this.writer = writer;
 		this.content = content;
 	}
 
-	public BoardVo(int bno, String title, String writer, String content, int hit, String reg_date) {
+	public BoardVo(int no, int user_no, String title, String content, int hit, String reg_date, int group_no,
+			int order_no, int depth, String name) {
 		super();
-		this.bno = bno;
+		this.no = no;
+		this.user_no = user_no;
 		this.title = title;
-		this.writer = writer;
 		this.content = content;
 		this.hit = hit;
 		this.reg_date = reg_date;
+		this.group_no = group_no;
+		this.order_no = order_no;
+		this.depth = depth;
+		this.name = name;
 	}
 
-	public int getBno() {
-		return bno;
+	public int getNo() {
+		return no;
 	}
 
-	public void setBno(int bno) {
-		this.bno = bno;
+	public void setNo(int no) {
+		this.no = no;
+	}
+
+	public int getUser_no() {
+		return user_no;
+	}
+
+	public void setUser_no(int user_no) {
+		this.user_no = user_no;
 	}
 
 	public String getTitle() {
@@ -44,14 +61,6 @@ public class BoardVo {
 
 	public void setTitle(String title) {
 		this.title = title;
-	}
-
-	public String getWriter() {
-		return writer;
-	}
-
-	public void setWriter(String writer) {
-		this.writer = writer;
 	}
 
 	public String getContent() {
@@ -78,10 +87,43 @@ public class BoardVo {
 		this.reg_date = reg_date;
 	}
 
+	public int getGroup_no() {
+		return group_no;
+	}
+
+	public void setGroup_no(int group_no) {
+		this.group_no = group_no;
+	}
+
+	public int getOrder_no() {
+		return order_no;
+	}
+
+	public void setOrder_no(int order_no) {
+		this.order_no = order_no;
+	}
+
+	public int getDepth() {
+		return depth;
+	}
+
+	public void setDepth(int depth) {
+		this.depth = depth;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
 	@Override
 	public String toString() {
-		return "BoardVo [bno=" + bno + ", title=" + title + ", writer=" + writer + ", content=" + content + ", hit="
-				+ hit + ", reg_date=" + reg_date + "]";
+		return "BoardVo [no=" + no + ", user_no=" + user_no + ", title=" + title + ", content=" + content + ", hit="
+				+ hit + ", reg_date=" + reg_date + ", group_no=" + group_no + ", order_no=" + order_no + ", depth="
+				+ depth + ", name=" + name + "]";
 	}
 
 }

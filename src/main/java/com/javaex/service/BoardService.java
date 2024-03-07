@@ -27,13 +27,12 @@ public class BoardService {
 	}
 
 	// 회원가입2
-	public int exeWrite2(String title, String writer, String content) {
+	public int exeWrite2(String title, String content) {
 		System.out.println("BoardService.exeWrite2()");
 
 		// map 사용
 		Map<String, String> boardMap = new HashMap<String, String>();
 		boardMap.put("title", title);
-		boardMap.put("writer", writer);
 		boardMap.put("content", content);
 
 		int count = boardDao.boardInsert2(boardMap);
@@ -51,22 +50,22 @@ public class BoardService {
 	}
 
 	// 수정폼
-	public BoardVo exeModifyForm(int bno) {
-		System.out.println("PhonebookService.exeModifyForm()");
+	public BoardVo exeModifyForm(int no) {
+		System.out.println("BoardService.exeModifyForm()");
 
 		// 비지니스로직X
 
-		BoardVo boardVo = boardDao.boardSelectOne(bno);
+		BoardVo boardVo = boardDao.boardSelectOne(no);
 
 		return boardVo;
 
 	}
 
 	// 수정폼2
-	public Map<String, Object> exeModifyForm2(int bno) {
+	public Map<String, Object> exeModifyForm2(int no) {
 		System.out.println("BoardService.exeModifyForm2()");
 
-		Map<String, Object> pMap = boardDao.boardSelectOne2(bno);
+		Map<String, Object> pMap = boardDao.boardSelectOne2(no);
 
 		return pMap;
 
@@ -81,10 +80,10 @@ public class BoardService {
 	}
 
 	// 삭제
-	public int exeDelete(int bno) {
+	public int exeDelete(int no) {
 		System.out.println("BoardService.exeDelete()");
 
-		int count = boardDao.boardDelete(bno);
+		int count = boardDao.boardDelete(no);
 
 		return count;
 	}

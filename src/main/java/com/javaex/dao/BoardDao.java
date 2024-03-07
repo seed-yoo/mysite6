@@ -20,7 +20,6 @@ public class BoardDao {
 		System.out.println("BoardDao.boardSelect()");
 
 		List<BoardVo> boardList = sqlSession.selectList("board.selectList");
-
 		// System.out.println(personList);
 
 		return boardList;
@@ -45,19 +44,19 @@ public class BoardDao {
 	}
 
 	// 1개 가져오기
-	public BoardVo boardSelectOne(int bno) {
+	public BoardVo boardSelectOne(int no) {
 		System.out.println("BoardDao.boardSelectOne()");
 
-		BoardVo boardVo = sqlSession.selectOne("board.selectOne", bno);
-		System.out.println(boardVo);
+		BoardVo boardVo = sqlSession.selectOne("board.selectOne", no);
+		//System.out.println(boardVo);
 		return boardVo;
 	}
 
 	// 1개 가져오기2
-	public Map<String, Object> boardSelectOne2(int bno) {
+	public Map<String, Object> boardSelectOne2(int no) {
 		System.out.println("BoardDao.boardSelectOne()");
 
-		Map<String, Object> pMap = sqlSession.selectOne("board.selectOne2", bno);
+		Map<String, Object> pMap = sqlSession.selectOne("board.selectOne2", no);
 		// System.out.println(pMap);
 		// System.out.println(pMap.get("name"));
 
@@ -75,9 +74,9 @@ public class BoardDao {
 	}
 
 	// 삭제
-	public int boardDelete(int bno) {
+	public int boardDelete(int no) {
 
-		int count = sqlSession.delete("board.boardDelete", bno);
+		int count = sqlSession.delete("board.boardDelete", no);
 		// System.out.println(count);
 
 		return count;

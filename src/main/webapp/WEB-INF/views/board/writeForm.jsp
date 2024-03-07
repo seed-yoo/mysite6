@@ -58,7 +58,7 @@
 								<textarea id="txt-content" name="content"></textarea>
 							</div>
 							
-							<input type="hidden" id="txt-writer" name="writer" value="${authUser.name}">
+							<input type="hidden" id="txt-no" name="user_no" value="${authUser.no}">
 							
 							<a id="btn_cancel" href="">취소</a>
 							<button id="btn_add" type="submit" >등록</button>
