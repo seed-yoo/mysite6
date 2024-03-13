@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -77,29 +78,10 @@
 						<!-- //guestWrite -->
 
 					</form>
-					<!-- 
-					<c:forEach items="${ requestScope.gList }" var="gbVo" varStatus="status">
-						<table class="guestRead">
-							<colgroup>
-								<col style="width: 10%;">
-								<col style="width: 40%;">
-								<col style="width: 40%;">
-								<col style="width: 10%;">
-							</colgroup>
-							<tr>
-								<td>${ gbVo.no }</td>
-								<td>${ gbVo.name }</td>
-								<td>${ gbVo.reg_date }</td>
-								<td><a href="${pageContext.request.contextPath}/guestbook/deleteform?no=${ gbVo.no }">삭제</a></td>
-							</tr>
-							<tr>
-								<td colspan=4 class="text-left">${ gbVo.content }</td>
-							</tr>
-						</table>
-					</c:forEach>
-					 -->
-					<!-- //guestRead -->
-
+					
+					<div id="guestbookListArea">
+						<!--방명록 글 리스트 -->
+					</div>
 
 
 				</div>
@@ -131,7 +113,14 @@ document.addEventListener("DOMContentLoaded", function () {
 		responseType: 'json' //수신타입
 		
 	}).then(function (response) {
-		console.log(response); //수신데이타
+		// console.log(response); //수신데이타
+		// console.log(response.data); //수신데이타
+		
+		// 리스트자리에 글을 추가한다
+		for (let i = 0; i < response.data.length; i++) {
+			let guestVo = response.data[i];
+			render(guestVo);	// 1개의 글을 render()에게 전달 ==> render() 리스트위치에 그린다
+		}
 		
 	}).catch(function (error) {
 		console.log(error);
@@ -139,17 +128,66 @@ document.addEventListener("DOMContentLoaded", function () {
     
 
 });
+
+
+
+////////함수들////////
+
+// 방명록 글 그리기
+function render(guestbookVo) {
+	console.log("render()");
+	console.log(guestbookVo);
+	
+	let guestbookListArea = document.querySelector("#guestbookListArea");
+	console.log(guestbookListArea);
+	
+	
+	
+	
+	let str = '';
+	str += '<table class="guestRead">';
+	str += '	<colgroup>';
+	str += '		<col style="width: 10%;">';
+	str += '		<col style="width: 40%;">';
+	str += '		<col style="width: 40%;">';
+	str += '		<col style="width: 10%;">';
+	str += '	</colgroup>';
+	str += '	<tr>';
+	str += '		<td>' + guestbookVo.no + '</td>';
+	str += '		<td>' + guestbookVo.name + '</td>';
+	str += '		<td>' + guestbookVo.reg_date + '</td>';
+	str += '		<td><a href="">삭제</a></td>';
+	str += '	</tr>';
+	str += '	<tr>';
+	str += '		<td colspan=4 class="text-left">' + guestbookVo.content + '</td>';
+	str += '	</tr>';
+	str += '</table>';
+	
+	guestbookListArea.insertAdjacentHTML("beforeend", str);	
+	
+	
+	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 </script>
-
-
-
-
-
-
-
-
-
-
 
 
 
