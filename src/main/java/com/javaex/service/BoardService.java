@@ -17,6 +17,15 @@ public class BoardService {
 	@Autowired
 	private BoardDao boardDao;
 
+	// 리스트
+	public List<BoardVo> exeList() {
+		System.out.println("BoardService.exeList()");
+
+		List<BoardVo> boardList = boardDao.boardSelect();
+
+		return boardList;
+	}
+
 	// 회원가입
 	public int exeWrite(BoardVo boardVo) {
 		System.out.println("BoardService.exeWrite()");
@@ -38,15 +47,6 @@ public class BoardService {
 		int count = boardDao.boardInsert2(boardMap);
 
 		return count;
-	}
-
-	// 리스트
-	public List<BoardVo> exeList() {
-		System.out.println("BoardService.exeList()");
-
-		List<BoardVo> boardList = boardDao.boardSelect();
-
-		return boardList;
 	}
 
 	// 수정폼

@@ -97,5 +97,20 @@ public class GuestbookController {
 		return "redirect:/guestbook/addlistform";
 
 	}
+	
+	
+	//////////////////////////////////////////////////////////////////////////////////////////////////////
+	// ajax 방명록
+	@RequestMapping(value="/ajaxindex", method = {RequestMethod.GET, RequestMethod.POST})
+	public String ajaxIndex() {
+		System.out.println("GuestbookController.ajaxIndex()");
+		
+		return "/guestbook/ajaxIndex";
+	}
+	
+	
+	
+	
+	
 
 }
