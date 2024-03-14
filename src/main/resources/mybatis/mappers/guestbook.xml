@@ -4,33 +4,32 @@
 <mapper namespace="guestbook">
 
 	<!-- 쿼리문 작성 -->
-	
+
 	<!-- personVo 매핑 -->
-	<!-- 
-	<resultMap id="resultMapPersonVo" type="PersonVo" >
-		<result column="person_id" property="personId"></result>
-		<result column="name" property="name"></result>
-		<result column="hp" property="hp"></result>
-		<result column="company" property="company"></result>
-	</resultMap>
-	 -->
-	  <!-- 전체리스트 -->
+	<!-- <resultMap id="resultMapPersonVo" type="PersonVo" > <result column="person_id" 
+		property="personId"></result> <result column="name" property="name"></result> 
+		<result column="hp" property="hp"></result> <result column="company" property="company"></result> 
+		</resultMap> -->
+	<!-- 전체리스트 -->
 	<select id="selectList" resultType="GuestbookVo">
 		<![CDATA[
 			select no, name, password, content, reg_date
 			from guestbook
+			order by no desc
+			
 		]]>
 	</select>
-	
+
 	<!-- 1명 데이터 가져오기 -->
-	<select id="selectOne" parameterType="int" resultType="GuestbookVo">
+	<select id="selectOne" parameterType="int"
+		resultType="GuestbookVo">
 		<![CDATA[
 			select no, name, password, content, reg_date
 			from guestbook
 			where no= #{ no }
 		]]>
 	</select>
-	
+
 	<!-- 삭제 delete -->
 	<delete id="guestbookDelete" parameterType="map">
 		<![CDATA[
@@ -39,19 +38,53 @@
 			and password = #{ password }
 		]]>
 	</delete>
-	
+
 	<!-- 추가 insert -->
 	<insert id="guestbookInsert" parameterType="GuestbookVo">
 		<![CDATA[
 			insert into guestbook
-			values(null, #{ name }, #{ password }, #{ content }, now());
+			values(null, #{ name }, #{ password }, #{ content }, now())
 		]]>
+		<!-- 
+		<selectKey keyProperty="no" resultType=“int " order="AFTER">	
+	     <![CDATA[
+			select last_insert_id()
+            ]]>
+		</selectKey>
+		-->
 	</insert>
-	
-	
-	
-	
-	
-	
+	<!-- ajax저장(저장하고 번호알아내기) -->
+	<insert id="insertSelectKey" parameterType="GuestbookVo">
+		<![CDATA[
+			insert into guestbook
+			values(null, #{ name }, #{ password }, #{ content }, now())
+		]]>
+		
+		<selectKey keyProperty="no" resultType="int" order="AFTER">	
+	     <![CDATA[
+			select last_insert_id()
+            ]]>
+		</selectKey>
+		
+	</insert>
+	<!-- ajax삭제(저장하고 번호알아내기) -->
+	<delete id="deleteSelectKey" parameterType="GuestbookVo">
+		<![CDATA[
+			delete from guestbook
+			where no = #{ no }
+			and password = #{ password }
+		]]>
+		<!--
+		<selectKey keyProperty="no" resultType="int" order="AFTER">	
+	     <![CDATA[
+			select last_insert_id()
+            ]]>
+		</selectKey>
+		-->
+	</delete>
+
+
+
+
 
 </mapper>

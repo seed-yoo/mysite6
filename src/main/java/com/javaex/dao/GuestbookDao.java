@@ -26,15 +26,6 @@ public class GuestbookDao {
 		return guestbookList;
 	}
 
-	// 1개 가져오기
-	public GuestbookVo guestbookSelectOne(int no) {
-		System.out.println("GuestbookDao.guestbookSelectOne()");
-
-		GuestbookVo guestbookVo = sqlSession.selectOne("guestbook.selectOne", no);
-		System.out.println(guestbookVo);
-		return guestbookVo;
-	}
-
 	// 1개 가져오기2
 	public Map<String, Object> guestbookSelectOne2(int no) {
 		System.out.println("GuestbookDao.guestbookSelectOne()");
@@ -69,6 +60,33 @@ public class GuestbookDao {
 	public int guestbookInsert(GuestbookVo guestbookVo) {
 
 		int count = sqlSession.insert("guestbook.guestbookInsert", guestbookVo);
+
+		return count;
+	}
+
+	// ajax등록
+	public int insertSelectKey(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookDao.insertSelectKey()");
+
+		int count = sqlSession.insert("guestbook.insertSelectKey", guestbookVo);
+
+		return count;
+	}
+
+	// 데이터 1개 가져오기 no 1개 데이터 가져오기
+	public GuestbookVo guestbookSelectOne(int no) {
+		System.out.println("GuestbookDao.guestbookSelectOne()");
+
+		GuestbookVo guestbookVo = sqlSession.selectOne("guestbook.selectOne", no);
+		System.out.println(guestbookVo);
+		return guestbookVo;
+	}
+
+	// ajax삭제
+	public int deleteSelectKey(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookDao.deleteSelectKey()");
+
+		int count = sqlSession.delete("guestbook.deleteSelectKey", guestbookVo);
 
 		return count;
 	}

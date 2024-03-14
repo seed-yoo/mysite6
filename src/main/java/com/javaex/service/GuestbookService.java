@@ -64,11 +64,41 @@ public class GuestbookService {
 
 	// 게스트북 등록
 	public int exeWrite(GuestbookVo guestbookVo) {
-		System.out.println("BoardService.exeWrite()");
+		System.out.println("GuestbookService.exeWrite()");
 
 		int count = guestbookDao.guestbookInsert(guestbookVo);
 
 		return count;
+	}
+
+	// ajax 등록 저장
+	public GuestbookVo exeAddandGuest(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookService.exeAddandGuest()");
+
+		// 저장
+		System.out.println("전" + guestbookVo);
+		guestbookDao.insertSelectKey(guestbookVo);
+		System.out.println("후" + guestbookVo);
+
+		// 1명데이터 가져오기
+		GuestbookVo gVo = guestbookDao.guestbookSelectOne(guestbookVo.getNo());
+
+		return gVo;
+	}
+
+	// ajax 삭제
+	public GuestbookVo exeDeleteGuest(GuestbookVo guestbookVo) {
+		System.out.println("GuestbookService.exeDeleteGuest()");
+
+		// 저장
+		System.out.println("전" + guestbookVo);
+		guestbookDao.deleteSelectKey(guestbookVo);
+		System.out.println("후" + guestbookVo);
+
+		// 1명데이터 가져오기
+		GuestbookVo gVo = guestbookDao.guestbookSelectOne(guestbookVo.getNo());
+
+		return gVo;
 	}
 
 }

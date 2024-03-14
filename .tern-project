@@ -1,0 +1,161 @@
+{
+  "ecmaVersion": 5,
+  "plugins": {
+    "guess-types": {
+      
+    },
+    "chrome-apps": {
+      
+    },
+    "chrome-extension": {
+      
+    },
+    "node": {
+      
+    },
+    "nuxeo": {
+      
+    },
+    "outline": {
+      
+    },
+    "jasmine": {
+      
+    },
+    "push": {
+      
+    },
+    "qunit": {
+      
+    },
+    "requirejs": {
+      
+    },
+    "lint": {
+      
+    },
+    "tabris": {
+      
+    },
+    "webpack": {
+      
+    },
+    "jshint": {
+      
+    },
+    "jscs": {
+      
+    },
+    "highlight": {
+      
+    },
+    "gas": {
+      
+    },
+    "eslint": {
+      
+    },
+    "complete_strings": {
+      
+    },
+    "browser-extension": {
+      
+    },
+    "phaser": {
+      
+    },
+    "qooxdoo4.1": {
+      
+    },
+    "snabbt": {
+      
+    },
+    "threejs": {
+      
+    },
+    "yui3": {
+      
+    },
+    "node-mongoose": {
+      
+    },
+    "node-mongodb-native": {
+      
+    },
+    "meteor": {
+      
+    },
+    "gulp": {
+      
+    },
+    "grunt": {
+      
+    },
+    "gmaps3.frozen": {
+      
+    },
+    "gcharts": {
+      
+    },
+    "extjs4.2.1": {
+      
+    },
+    "node-express": {
+      
+    },
+    "dojotoolkit1.10": {
+      
+    },
+    "cordovajs": {
+      
+    },
+    "closure": {
+      
+    },
+    "ckeditor4.4.x": {
+      
+    },
+    "angular1": {
+      
+    },
+    "liferay": {
+      
+    },
+    "protractor": {
+      
+    },
+    "node-extension": {
+      
+    },
+    "delite": {
+      
+    },
+    "bootstrap": {
+      
+    },
+    "requirejs-extension": {
+      
+    },
+    "jquery-ui1-12": {
+      
+    },
+    "aui1.5.x": {
+      
+    },
+    "jquery-extension": {
+      
+    },
+    "jquery-mobile1.5": {
+      
+    }
+  },
+  "libs": [
+    "browser",
+    "titanium",
+    "underscore",
+    "webidl",
+    "fetch",
+    "jquery",
+    "chai"
+  ]
+}
