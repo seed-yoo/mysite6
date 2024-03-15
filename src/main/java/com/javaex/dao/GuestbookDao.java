@@ -87,7 +87,7 @@ public class GuestbookDao {
 		System.out.println("GuestbookDao.deleteSelectKey()");
 
 		int count = sqlSession.delete("guestbook.deleteSelectKey", guestbookVo);
-
+		
 		return count;
 	}
 

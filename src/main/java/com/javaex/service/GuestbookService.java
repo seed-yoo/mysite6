@@ -87,18 +87,18 @@ public class GuestbookService {
 	}
 
 	// ajax 삭제
-	public GuestbookVo exeDeleteGuest(GuestbookVo guestbookVo) {
+	public int exeDeleteGuest(GuestbookVo guestbookVo) {
 		System.out.println("GuestbookService.exeDeleteGuest()");
 
 		// 저장
 		System.out.println("전" + guestbookVo);
-		guestbookDao.deleteSelectKey(guestbookVo);
+		int count = guestbookDao.deleteSelectKey(guestbookVo);
 		System.out.println("후" + guestbookVo);
 
 		// 1명데이터 가져오기
-		GuestbookVo gVo = guestbookDao.guestbookSelectOne(guestbookVo.getNo());
+		//GuestbookVo gVo = guestbookDao.guestbookSelectOne(guestbookVo.getNo());
 
-		return gVo;
+		return count;
 	}
 
 }
