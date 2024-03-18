@@ -135,7 +135,9 @@
 				</div>
 			</div>
 			<div class="m-footer">
-				<button class="btnDelete" id="btnDelete">삭제</button>
+				<c:if test="${sessionScope.authUser.no != null}">
+					<button class="btnDelete" id="btnDelete">삭제</button>
+				</c:if>
 			</div>
 		</div>
 	</div>
