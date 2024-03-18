@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="attach">
+
+	<!-- 쿼리문 작성 -->
+	
+	<!-- personVo 매핑 -->
+	<!-- 
+	<resultMap id="resultMapPersonVo" type="PersonVo" >
+		<result column="person_id" property="personId"></result>
+		<result column="name" property="name"></result>
+		<result column="hp" property="hp"></result>
+		<result column="company" property="company"></result>
+	</resultMap>
+	 -->
+	 
+	 
+	<!-- 추가 insert -->
+	<insert id="attachInsert" parameterType="AttachVo">
+		<![CDATA[
+			insert into attach
+			values (null, #{ orgName }, #{ saveName }, #{ filePath }, #{ fileSize })
+		]]>
+	</insert>
+	
+	
+	
+ 
+
+
+</mapper>

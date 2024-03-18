@@ -60,8 +60,8 @@
 			<div id="aside">
 				<h2>방명록</h2>
 				<ul>
-					<li>일반방명록</li>
-					<li>ajax방명록</li>
+					<li><a href="${pageContext.request.contextPath}/guestbook/addlistform">일반방명록</a></li>
+					<li><a href="${pageContext.request.contextPath}/guestbook/ajaxindex">ajax방명록</a></li>
 				</ul>
 			</div>
 			<!-- //aside -->
@@ -121,9 +121,9 @@
 							<div class="closeBtn">×</div>
 							<div class="m-header">패스워드를 입력하세요</div>
 							<div class="m-body">
-								<input class="m-password" type="password" name="password"
-									value=""><br> <input class="m-no" type="text"
-									name="no" value="">
+								<input class="m-password" type="password" name="password" value="">
+								<br>
+								<input class="m-no" type="text" name="no" value="">
 							</div>
 							<div class="m-footer">
 								<button class="btnDelete" type="button">삭제</button>
