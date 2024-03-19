@@ -187,6 +187,7 @@ function callModal(event) {
 		let contentTag = document.querySelector('#viewModelContent');
 		contentTag.textContent = event.target.dataset.content;
 		
+		
 	}
 	
 	
