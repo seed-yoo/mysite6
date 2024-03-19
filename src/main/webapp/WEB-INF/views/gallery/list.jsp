@@ -148,8 +148,8 @@
 document.addEventListener("DOMContentLoaded", function () {
     
     // 모달창 호출 버튼을 클릭했을때
-    let viewArea = document.querySelector("#list");
-    viewArea.addEventListener("click", callModal);
+    let list = document.querySelector("#list");
+    list.addEventListener("click", callModal);
     
     // 모달창 닫기 버튼 (X) 클릭했을때
     let closeBtn1 = document.querySelector("#closeBtn1");
@@ -186,9 +186,6 @@ function callModal(event) {
 		
 		let contentTag = document.querySelector('#viewModelContent');
 		contentTag.textContent = event.target.dataset.content;
-		
-		
-		
 		
 	}
 	
